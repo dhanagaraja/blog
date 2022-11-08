@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div style="padding-left:5%;padding-right:5%;">
+<h1>{{post.title}}</h1>
+
+<br>
+Author Name     : {{post.author.first_name}} <br>
+Email Address   : {{post.author.email}}<br>
+Content         : {{post.body|safe}}<br>
+<br/>
+<br/>
+
+<a type="button" class="btn btn-secondary" href="{% url 'index' %}">Back</a>
+</div>
+
+{% endblock %}

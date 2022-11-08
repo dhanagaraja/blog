@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block contents %}
+
+{% for post in object_list%}
+<div style="padding-left:5%; padding-right:5%;">
+    <br>
+    <li><a href={% url "detail-view" post.pk %}>{{post.title}}</a> -<a href = {% url "view-category" post.category %}> {{post.category}}</a></li>
+    <br>{{post.author.first_name}} - {{post.author.email}}
+
+    {% if user.is_authenticated %}
+    <small><a href={% url "update-post" post.pk %}>(edit)</a>
+        <a href={% url "delete-post" post.pk %}>(delete)</a></small><br/>
+    {% endif %}
+    {{ post.body|slice:":200"|safe }}
+</div>
+{% endfor %}
+
+
+{% endblock %}

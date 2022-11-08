@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div style="padding-left:5% ; padding-top: 5%;">
+<h1>Edit Blog post</h1>
+
+<form method="POST">
+
+    {%csrf_token%}
+    <table>
+        {{form.as_table}}
+    </table>
+    <input type="submit" value="Update">
+</form>
+</div>
+{% endblock %}      
