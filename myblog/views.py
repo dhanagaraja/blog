@@ -24,6 +24,12 @@ class HomeView(ListView):
 class ArticleDetailView(DetailView):
     model=Post
     template_name= 'article_detail.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context['cat_menu']=cat_menu
+        return context
 
 class AddPostView(CreateView):
     model=Post
@@ -48,5 +54,8 @@ class AddCategoryView(CreateView):
 
 def CategoryView(request,cats):
     catagory = Post.objects.filter(category__category=cats)
-    return render(request, 'categories.html', {'cats':cats, 'catagory':catagory })
+    cat_menu = Category.objects.all()
+    return render(request, 'categories.html', {'cats':cats, 'category':catagory, "cat_menu":cat_menu })
+
+
 

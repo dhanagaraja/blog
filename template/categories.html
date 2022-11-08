@@ -3,15 +3,17 @@
 {% block contents %}
 <div style="padding-left:5%;padding-right:5%;">
     <h1>{{cats}} Categories</h1>
-    {% for post in catagory %}
+    {% for post in category %}
     <div style="padding-left:5%;padding-right:5%;">
         <br>
         <li><a href={% url "detail-view" post.pk %}>{{post.title}}</a></li>
         <br>{{post.author.first_name}} - {{post.author.email}}
     
         {% if user.is_authenticated %}
-        <small><a href={% url "update-post" post.pk %}>(edit)</a>
-            <a href={% url "delete-post" post.pk %}>(delete)</a></small>
+        <small>
+            <a href={% url "update-post" post.pk %}>(edit)</a>
+            <a href={% url "delete-post" post.pk %}>(delete)</a>
+        </small>
         {% endif %}
         {{ post.body|slice:":200"|safe }}
     </div>

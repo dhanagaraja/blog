@@ -47,17 +47,19 @@
           <a class="nav-link" style="color: white;" href="{% url 'register' %}">Register</a>
         </li>
         {% endif %}
-    
+        
+        {% if cat_menu %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" style="color: white;"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Category
           </a>
           <ul class="dropdown-menu">
             {% for menu in  cat_menu %}
-              <li><a class="dropdown-item" href="">{{menu}}<br/></a></li> 
+              <li><a class="dropdown-item" href="{% url 'view-category' menu %}">{{menu}}<br/></a></li> 
             {% endfor %}
           </ul>
         </li>
+        {% endif %}
        
         {% if user.is_authenticated %}
         <li class="nav-item">
