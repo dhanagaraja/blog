@@ -33,8 +33,9 @@ class ArticleDetailView(DetailView):
 
 class AddPostView(CreateView):
     model=Post
+    form_class = EditForm
     template_name = 'add-post.html'
-    fields= '__all__'
+    #fields= '__all__'
 
 class UpdatePostView(UpdateView):
     model=Post

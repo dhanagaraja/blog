@@ -1,16 +1,14 @@
 {% extends "base.html" %}
 
 {% block contents %}
-<div style="padding-left:5% ; padding-top: 5%;">
-<h1>Add Blog post</h1>
+<div style="padding: 5%;">
+<center><h1 style="color: green;">Add Category </h1></center>
 
 <form method="POST">
 
     {%csrf_token%}
-    <table>
-        {{form.as_table}}
-    </table>
-    <input type="submit" value="Post">
+        {{form}}
+    <input type="submit" class="btn btn-success" value="  Post  ">
 </form>
 </div>
 {% endblock %}      

@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 {% block contents %}
+<br>
 
 {% for post in object_list%}
-<div style="padding-left:5%; padding-right:5%;">
-    <br>
-    <li><a href={% url "detail-view" post.pk %}>{{post.title}}</a> -<a href = {% url "view-category" post.category %}> {{post.category}}</a></li>
-    <br>{{post.author.first_name}} - {{post.author.email}}
-
-    {% if user.is_authenticated %}
-    <small><a href={% url "update-post" post.pk %}>(edit)</a>
-        <a href={% url "delete-post" post.pk %}>(delete)</a></small><br/>
-    {% endif %}
-    {{ post.body|slice:":200"|safe }}
+<div style="padding-left:5% ;padding-right:5% ;padding-bottom:2% ;">
+<div class="card w-100" >
+    <div class="card-header" style="background-color: rgb(236, 226, 226) ;">
+        <a href={% url "detail-view" post.pk %}><b>{{post.title}}</a></b>  -  {{post.stamp}} --
+        {%if user.id == post.author.id%}
+            {% if user.is_authenticated %}
+                <small><a href={% url "update-post" post.pk %}>(edit)</a>
+                <a href={% url "delete-post" post.pk %}>(delete)</a></small>
+            {% endif %}
+        {% endif %}
+        --  <a href = {% url "view-category" post.category %}> {{post.category}}</a>
+    </div>
+    <div class="card-body">
+      {{post.author.first_name}} - {{post.author.email}}
+      <p class="card-text">{{ post.body|slice:":200"|safe }}</p>
+    </div>
+  </div>
 </div>
 {% endfor %}
 

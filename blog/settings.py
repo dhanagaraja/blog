@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR1 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATICFILES_DIR =[ os.path.join(BASE_DIR1,'static'),]
+STATICFILES_DIRS =[ os.path.join(BASE_DIR1,'static'),]
 TEMPLATE_DIR = os.path.join(BASE_DIR1,'template')
 
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myblog',
     'members',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
