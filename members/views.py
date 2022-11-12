@@ -9,3 +9,5 @@ class UserRegistrationForm(CreateView):
     template_name = 'register.html'
     success_url = reverse_lazy('login')
 # Create your views here.
+def UserProfile(request):
+    return render(request,'Profile.html',{})

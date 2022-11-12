@@ -17,19 +17,18 @@
 </head>
 
 <body>
-  <b>
     <nav class="navbar navbar-expand-lg " style="background-color: #7ad1ad; color: white;">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'index' %}" style="color: white;"><img src="{% static 'Naga_icon.png' %}"
-            width="70" height="50"></a>
+            width="80" height="50"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: large;">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" style="color: white;" href="{% url 'index' %}"> Home </a>
+              <a class="nav-link active" aria-current="page" style="color:white" href="{% url 'index' %}"> Home </a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
@@ -41,15 +40,7 @@
               <a class="nav-link" style="color: white;" href="{% url 'add-category' %}">Add category</a>
             </li>
             {% endif %}
-            {% if not user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" style="color: white;" href="{% url 'login' %}">Login</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" style="color: white;" href="{% url 'register' %}">Register</a>
-            </li>
-            {% endif %}
+            
 
             {% if cat_menu %}
             <li class="nav-item dropdown">
@@ -65,24 +56,32 @@
             </li>
             {% endif %}
 
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" style="color: white;" href="{% url 'logout' %}">Logout</a>
-            </li>
-            {% endif %}
+            
           </ul>
           <b>
             <h1 style="padding-right:2%; font-family: 'Times New Roman', Times, serif;color: rgb(207, 7, 23);">NAGA</h1>
           </b>
           <h3 style="padding-right:2%; font-family: 'Times New Roman', Times, serif; color: rgb(196, 109, 4);">Blog</h3>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-danger" type="submit">Search</button>
-          </form>
+          
+          {% if not user.is_authenticated %}
+          <div style="padding:1%"></div>
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-warning" >Login</button></a>
+          <div style="padding:0.5%">
+          <a href="{% url 'register' %}"><button type="button" class="btn btn-warning" >Register</button></a>
         </div>
+        </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div style="padding:0.5%">
+              <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning" >Logout</button></a>
+            </div>
+        {% endif %}
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-danger" type="submit">Search</button>
+        </form>
       </div>
     </nav>
-  </b>
   {% block contents %}
 
 

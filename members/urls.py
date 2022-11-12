@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import UserRegistrationForm
+from .views import UserRegistrationForm, UserProfile
 from django.contrib.auth import views
 from .forms import LoginForm
 
@@ -23,6 +23,6 @@ from .forms import LoginForm
 urlpatterns = [
     path('register/', UserRegistrationForm.as_view(), name='register'),
     path('login/', views.LoginView.as_view(template_name="registration/login.html",authentication_form=LoginForm), name='login'),
-        
+    path('profile', UserProfile, name='profile')    ,
 ]
 
