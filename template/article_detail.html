@@ -1,6 +1,50 @@
 {% extends "base.html" %}
 
 {% block contents %}
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(101, 197, 141);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+</style>
+
+<nav class="nav flex-column">
+  <a class="nav-link active" aria-current="page" href="#">Active</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link disabled">Disabled</a>
+</nav>
+
+
+<nav class="nav flex-column"
 <div style="padding-left:5%;padding-right:5%;">
 <h1>{{post.title}}</h1>
 
@@ -30,5 +74,5 @@ Content         : {{post.body|safe}}<br>
 <a type="button" class="btn btn-secondary" href="{% url 'index' %}">  Back  </a>
 </div>
 
-
+</nav>
 {% endblock %}

@@ -23,6 +23,6 @@ from .forms import LoginForm
 urlpatterns = [
     path('register/', UserRegistrationForm.as_view(), name='register'),
     path('login/', views.LoginView.as_view(template_name="registration/login.html",authentication_form=LoginForm), name='login'),
-    path('profile', UserProfile, name='profile')    ,
+    path('profile/<int:pk>/', UserProfile.as_view(), name='profile'),
 ]
 

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div style="padding-left :  20%; padding-right :  20%;">
+<center><h1 style="color: green;">Register Member</h1></center>
+
+<form method="POST">
+
+    {%csrf_token%}     
+        {{form}}
+        <br/>
+    <center><input type="submit" class="btn btn-success" value="  Register  "></center>
+</form>
+</div>
+{% endblock %}   

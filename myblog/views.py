@@ -13,7 +13,6 @@ class HomeView(ListView):
     model=Post
     template_name= 'index.html'
     ordering = ['-id']
-    menu = Category.objects.all()
     
     
     def get_context_data(self, *args, **kwargs):

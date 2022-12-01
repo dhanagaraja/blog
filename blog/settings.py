@@ -19,6 +19,14 @@ BASE_DIR1 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATICFILES_DIRS =[ os.path.join(BASE_DIR1,'static'),]
 TEMPLATE_DIR = os.path.join(BASE_DIR1,'template')
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_URL = '/static/'
+#MEDIA_URL = '/static/'
+
+#STATIC_ROOT = os.path.join(BASE_DIR1,'static_cdn')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,7 +37,7 @@ SECRET_KEY = 'django-insecure-4ohi-c-#j*#s0+$v93x^_3we6l3r=c2x3)v*mvncclnvm%h$e4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -119,11 +127,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
