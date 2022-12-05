@@ -33,7 +33,7 @@ class LoginForm(AuthenticationForm):
     username =UsernameField(widget=forms.TextInput(attrs={'class':"form-control"}))
     username =forms.CharField(widget=forms.PasswordInput(attrs={'class':"form-control"}))
 
-class Profile(forms.ModelForm):
+class Profiles(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'

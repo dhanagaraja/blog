@@ -19,7 +19,7 @@ from .views import HomeView,ArticleDetailView,AddPostView,UpdatePostView, Delete
 
 urlpatterns = [
     path('', HomeView.as_view(), name='index'),
-    path('article/<int:pk>', ArticleDetailView.as_view(), name='detail-view'),
+    path(r'article/<str:cats>/<int:pk>', ArticleDetailView, name='detail-view'),
     path('add-post/', AddPostView.as_view(), name='add-post'),
     path('add-post/<int:pk>/edit/', UpdatePostView.as_view(), name='update-post'),
     path('delete-post/<int:pk>', DeletePostView.as_view(), name='delete-post'),

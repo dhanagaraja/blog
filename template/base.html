@@ -11,43 +11,28 @@
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/main.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg " style="background-color: #7ad1ad; color: white;">
+  <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'index' %}" style="color: white;"><img src="{% static 'Naga_icon.png' %}"
-          width="80" height="50"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand" href="{% url 'index' %}" style="color: white;"><img src="{% static 'Naga_icon.svg' %}"
+          width="200" height="70">
+      </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: large;">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" style="color:white" href="{% url 'index' %}"> Home </a>
           </li>
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" style="color: white;" href="{% url 'add-post' %}"> Add Post </a>
-          </li>
-          <!--             <li class="nav-item">
-              <a class="nav-link" style="color: white;" href="{% url 'profile' user.pk %}"> Edit Profile </a>
-            </li> -->
-          {% endif %}
-          {% if user.is_superuser %}
-          <li class="nav-item">
-            <a class="nav-link" style="color: white;" href="{% url 'add-category' %}">Add category</a>
-          </li>
-          {% endif %}
-
-
-          {% if cat_menu %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -59,38 +44,63 @@
               {% endfor %}
             </ul>
           </li>
+
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="{% url 'add-post' %}"> Add Post </a>
+          </li>
           {% endif %}
+          {% if user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="{% url 'add-category' %}">Add category</a>
+          </li>   
+          {% endif %}
+      </ul>
 
 
-        </ul>
-        <b>
-          <h1 style="padding-right:2%; font-family: 'Times New Roman', Times, serif;color: rgb(207, 7, 23);">NAGA</h1>
-        </b>
-        <h3 style="padding-right:2%; font-family: 'Times New Roman', Times, serif; color: rgb(196, 109, 4);">Blog</h3>
+
 
         {% if not user.is_authenticated %}
-        <div style="padding:1%"></div>
-        <a href="{% url 'login' %}" class="fa fa-fw fa-user"><button type="button" class="btn btn-warning"><div class="fa fa-fw fa-user">Login</button></a></div>
+        <div style="padding:1%">
+        </div>
+        <a href="{% url 'login' %}" class="fa fa-fw fa-user"><button type="button" class="btn btn-warning">
+            <div class="fa fa-fw fa-user">Login
+          </button></a>
         <div style="padding:0.5%">
           <a href="{% url 'register' %}"><button type="button" class="btn btn-warning">Register</button></a>
         </div>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{user.first_name}} {% for p in profile %} <img src="{{ p.Profile_Picture.url }}"> {% endfor %}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profile' user.id %}">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout'  %}">Logout</a></li>
+          </ul>
+        </div>
+        {% endif %}
+
       </div>
-      {% endif %}
-      {% if user.is_authenticated %}
-      <div style="padding:0.5%">
-        <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning">Logout</button></a>
-      </div>
-      {% endif %}
-      <form class="d-flex" role="search">
+
+      <form class="d-flex" role="search" style="padding-left:10px ;">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-danger" type="submit">Search</button>
       </form>
+
+
     </div>
   </nav>
-  {% block contents %}
 
 
-  {% endblock %}
+{% block contents %}
+
+
+{% endblock %}
+
 </body>
 
 </html>

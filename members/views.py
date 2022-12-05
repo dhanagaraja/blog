@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView,UpdateView
 from django.urls import reverse_lazy
-from .forms import SignupForm, Profile
+from .forms import SignupForm, Profiles 
+from .models import Profile
 
 
 class UserRegistrationForm(CreateView):
@@ -13,6 +14,10 @@ class UserRegistrationForm(CreateView):
 
 
 class UserProfile(UpdateView):
-    form_class : Profile
+    model = Profile
+    form_class : Profiles
     template_name = 'profile.html'
-    success_url = reverse_lazy('index')
+
+def Profile(request):
+    profile = Profile.objects.all()
+    return render(request,'base.html', {'profile':profile})

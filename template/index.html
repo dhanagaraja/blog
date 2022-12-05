@@ -1,27 +1,26 @@
 {% extends "base.html" %}
+
 {% block contents %}
-<br>
+<link rel="stylesheet" href="/static/css/index-background.css">
+<div class="d-flex flex-column justify-content-center w-100 h-100">
 
-{% for post in object_list%}
-<div style="padding-left:5% ;padding-right:5% ;padding-bottom:2% ;">
-<div class="card w-100" >
-    <div class="card-header" style="background-color: rgb(236, 226, 226) ;">
-        <a href={% url "detail-view" post.pk %}><b>{{post.title}}</a></b>  -  {{post.stamp}} --
-        {%if user.id == post.author.id%}
-            {% if user.is_authenticated %}
-                <small><a href={% url "update-post" post.pk %}>(edit)</a>
-                <a href={% url "delete-post" post.pk %}>(delete)</a></small>
-            {% endif %}
-        {% endif %}
-        --  <a href = {% url "view-category" post.category %}> {{post.category}}</a>
-    </div>
-    <div class="card-body">
-      {{post.author.first_name}} - {{post.author.email}}
-      <p class="card-text">{{ post.body|slice:":200"|safe }}</p>
-    </div>
-  </div>
+	<div class="d-flex flex-column justify-content-center align-items-center">
+		<h1 class="fw-light text-white m-0" style="font-size:600%;">Color your Future</h1>
+		<div class="btn-group my-5">
+			<form class="row domain-search bg-pblue">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <input type="search" class="form-control">
+                        <span class="input-group-addon"><input type="submit" value="Search" class="btn btn-primary"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </form>
+		</div>
+	</div>
 </div>
-{% endfor %}
-
-
+</div>
 {% endblock %}

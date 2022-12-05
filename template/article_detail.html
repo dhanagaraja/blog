@@ -1,78 +1,37 @@
-{% extends "base.html" %}
-
-{% block contents %}
-
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(101, 197, 141);
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
+  {% extends "base.html" %}
 
 
-</style>
+  {% block contents %}
+  <div style="margin-top: 100px;">
+    <link rel="stylesheet" href="/static/css/sidenav.css">
+    <div class="sidenav">
+        {% for post in category %}
+        <a href='{% url "detail-view" post.category post.pk %}'>{{post.title}}</a>
+        {% endfor %}
+    </div>
+  <div style="margin-left: 150px;">
+    {% for post in Posts%}
+    <div style="padding-left:5%;padding-right:5%;">
+      <center><h1>{{post.title}} {{post.category}}</h1></center>
+      {{post.body | safe }}
 
-<nav class="nav flex-column">
-  <a class="nav-link active" aria-current="page" href="#">Active</a>
-  <a class="nav-link" href="#">Link</a>
-  <a class="nav-link" href="#">Link</a>
-  <a class="nav-link disabled">Disabled</a>
-</nav>
-
-
-<nav class="nav flex-column"
-<div style="padding-left:5%;padding-right:5%;">
-<h1>{{post.title}}</h1>
-
-<br>
-Author Name     : {{post.author.first_name}} <br>
-Email Address   : {{post.author.email}}<br>
-Content         : {{post.body|safe}}<br>
-<br/>
-<br/>
-
-<div class="card mb-3" style="max-width: 800px; background-color: rgb(183, 179, 187);">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{post.author.profile.Profile_Picture.url}}" class="rounded-circle" width="100" height="100" >
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{post.author.profile.Full_Name}}</h5>
-          <p class="card-text">{{post.author.profile.Designation}}</p>
+      <div class="card mb-3" style="max-width: 800px; background-color: rgb(183, 179, 187);">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{post.author.profile.Profile_Picture.url}}" class="rounded-circle" width="100" height="100">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{post.author.profile.Full_Name}}</h5>
+              <p class="card-text">{{post.author.profile.Designation}}</p>
+            </div>
+          </div>
         </div>
       </div>
+
+      <a type="button" class="btn btn-secondary" href="{% url 'view-category' post.category %}"> Back </a>
     </div>
   </div>
-
-
-<br/><br/>
-<a type="button" class="btn btn-secondary" href="{% url 'index' %}">  Back  </a>
-</div>
-
-</nav>
-{% endblock %}
+  </div>
+  {% endfor %}
+  {% endblock %}

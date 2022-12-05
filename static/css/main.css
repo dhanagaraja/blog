@@ -1,0 +1,18 @@
+<style>
+  body {margin:0;}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #084030; 
+  color: white;
+  z-index:1; 
+  overflow-y: visible ;
+
+}
+.main {
+  padding: 16px;
+  margin-top: 100px;
+  height: 1500px;
+}
+</style>

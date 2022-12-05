@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block contents %}
-<div style="padding : 5%;">
-<h1><center>Edit Blog post</h1></center>
+<div style="margin-top:100px"></div>
+
+<div style="padding-left:20% ; padding-top: 1%;padding-right: 20%;">
+<center><h1 style="color:green">Edit Blog post</h1></center>
 
 <form method="POST">
-
     {%csrf_token%}
-
         {{form}}
-
-    <input type="submit" class="btn btn-success" value="  Update  ">
+        {{form.media}}
+    <center><input type="submit" class="btn btn-success" value="  Post  " style="width:100%"></center>
 </form>
 </div>
 {% endblock %}      
