@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import HomeView,ArticleDetailView,AddPostView,UpdatePostView, DeletePostView, AddCategoryView,CategoryView
+from .views import HomeView,ArticleDetailView,AddPostView,UpdatePostView, DeletePostView, AddCategoryView,CategoryView,EditView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='index'),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('delete-post/<int:pk>', DeletePostView.as_view(), name='delete-post'),
     path('add-category/', AddCategoryView.as_view(), name="add-category"),
     path('category/<str:cats>/', CategoryView, name="view-category"),
+    path('edit-post/<str:cats>/', EditView, name="edit-view"),
 ]

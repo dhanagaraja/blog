@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div style="padding:3%; margin-top: 100px;">
+{% for post in category %}
+{% if user == post.author %}
+<div class=cardstyle style="padding-left:20px; padding-right:20px; padding-bottom:20px;">
+    <div class="card w-100">
+        <div class="card-header" style="background-color: rgb(236, 226, 226) ;">
+            <div style="padding-left:2%;padding-right:2%;">
+               <b>{{post.title}}</b>
+                <small>
+                    <a href='{% url "update-post" post.pk %}'>(edit)</a>
+                    <a href='{% url "delete-post" post.pk %}'>(delete)</a>
+                </small>
+                {{ post.body | slice:":200" }}
+                 <br/>
+                {{post.stamp}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endfor %}
+</div>
+
+{% endblock %}

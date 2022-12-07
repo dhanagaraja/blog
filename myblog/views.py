@@ -19,8 +19,10 @@ class HomeView(ListView):
     
     def get_context_data(self, *args, **kwargs):
        cat_menu = Category.objects.all()
+       profile = Profile.objects.all()
        context = super(HomeView, self).get_context_data(*args, **kwargs)
        context['cat_menu']=cat_menu
+       context['profile']=profile
        return context
     
 ''' 
@@ -69,7 +71,7 @@ class UpdatePostView(UpdateView):
     form_class = EditForm
     template_name = 'update-post.html'
     #fields= ['title','body',]
-    def get_context_data(self, *args, **kwargs):
+    def get_context_data(self,  *args, **kwargs):
         cat_menu = Category.objects.all()
         profile = Profile.objects.all()
         Posts = Post.objects.all()
@@ -77,25 +79,56 @@ class UpdatePostView(UpdateView):
         context['cat_menu']=cat_menu
         context['profile']=profile
         context['Posts'] = Posts
-
         return context
+
 
 @method_decorator(login_required, name='dispatch')
 class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('index')
-
+    
+    def get_context_data(self,  *args, **kwargs):
+        cat_menu = Category.objects.all()
+        profile = Profile.objects.all()
+        Posts = Post.objects.all()
+        context = super(DeletePostView, self).get_context_data(*args, **kwargs)
+        context['cat_menu']=cat_menu
+        context['profile']=profile
+        context['Posts'] = Posts
+        return context
 
 class AddCategoryView(CreateView):
     model = Category
     template_name = 'add-category.html'
     fields = '__all__'
+    
+    def get_context_data(self,  *args, **kwargs):
+        cat_menu = Category.objects.all()
+        profile = Profile.objects.all()
+        Posts = Post.objects.all()
+        context = super(AddCategoryView, self).get_context_data(*args, **kwargs)
+        context['cat_menu']=cat_menu
+        context['profile']=profile
+        context['Posts'] = Posts
+        return context
 
 def CategoryView(request,cats):
     catagory = Post.objects.filter(category__category=cats)
+    category_head = Post.objects.filter(category__category=cats).order_by("stamp")
     cat_menu = Category.objects.all()
-    return render(request, 'categories.html', {'cats':cats, 'category':catagory, "cat_menu":cat_menu })
+    profile = Profile.objects.all()
+    context = {'cats':cats, 'category':catagory, "cat_menu":cat_menu, "profile":profile,"category_head":category_head }
+    return render(request, 'categories.html', context)
+
+def EditView(request, cats):
+    catagory = Post.objects.filter(category__category=cats)
+    cat_menu = Category.objects.all()
+    profile = Profile.objects.all()
+    context = {'category':catagory, "cat_menu":cat_menu, "profile":profile }
+    return render(request, 'edit-view.html', context)
+
+
 
 
 
